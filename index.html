@@ -3,103 +3,65 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>UMP TV — Transmissões ao Vivo</title>
-  <meta name="description" content="Assista a partidas ao vivo — transmissão exclusiva CRF25 e melhores momentos na UMP TV." />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>UMP+ — Logo Verde Animado</title>
   <style>
-    :root{--green:#0f9d58;--dark:#062217}
-    body{background:linear-gradient(180deg, #083022 0%, #03130b 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
-    .brand-badge{background:var(--green);border-radius:12px;padding:8px 14px;display:inline-flex;align-items:center;gap:10px}
-    .glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.04)}
-    .btn-green{background:var(--green);color:#052014;font-weight:700}
+    html,body{height:100%;margin:0;background:transparent}
+    .stage{height:100vh;display:flex;align-items:center;justify-content:center}
+
+    .logo{
+      position:relative;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      font-weight:800;
+      font-size:8vw;
+      color:#00ff73; /* verde neon */
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      user-select:none;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));
+      animation:pulseLive 30s linear infinite;
+    }
+
+    .brand, .live-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+
+    .brand{transition:opacity .4s linear;}
+
+    .live-badge{
+      display:flex;gap:.6rem;align-items:center;font-size:0.26em;
+      padding:.55em .9em;border-radius:999px;
+      background:#00ff73;color:#003b1b;
+      opacity:0;scale:0.9;
+      transform-origin:center center;
+      box-shadow:0 8px 20px rgba(0,0,0,0.35);
+    }
+
+    .dot{width:.8em;height:.8em;border-radius:50%;background:#003b1b}
+
+    @keyframes pulseLive {
+      0%   { --brand-opacity:1; --live-opacity:0; --brand-scale:1 }
+      60%  { --brand-opacity:1; --live-opacity:0; --brand-scale:1 }
+      66%  { --brand-opacity:0.15; --live-opacity:1; --brand-scale:0.98 }
+      80%  { --brand-opacity:0.15; --live-opacity:1; --brand-scale:0.98 }
+      90%  { --brand-opacity:0.6; --live-opacity:0; --brand-scale:1.02 }
+      100% { --brand-opacity:1; --live-opacity:0; --brand-scale:1 }
+    }
+
+    .brand{opacity:var(--brand-opacity);transform:translate(-50%,-50%) scale(var(--brand-scale));}
+    .live-badge{opacity:var(--live-opacity);transform:translate(-50%,-50%) scale(calc(0.9 + var(--live-opacity) * 0.12));transition:opacity .15s linear, transform .15s linear}
+
+    @media(max-width:520px){ .logo{font-size:14vw} }
   </style>
 </head>
-<body class="min-h-screen text-white">
-  <div class="w-full max-w-6xl mx-auto p-6">
-    <header class="flex items-center justify-between mb-6">
-      <div class="flex items-center gap-4">
-        <div class="brand-badge text-white shadow-lg">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <circle cx="12" cy="12" r="10" fill="white" opacity="0.06"></circle>
-            <path d="M7 9.5C7.8 7.9 9.2 7 11 7c2 0 3 1 4 2.5 1 1.5 1 4 1 4H7s0-3 0-4.5z" fill="white" opacity="0.95"/>
-          </svg>
-          <strong class="uppercase tracking-wide">UMP TV</strong>
-        </div>
-        <div class="text-white">
-          <div class="text-sm opacity-80">Transmissões ao vivo</div>
-          <div class="text-xs opacity-60">Copa do Brasil — CRF25</div>
-        </div>
+<body>
+  <div class="stage">
+    <div class="logo">
+      <div class="brand">UMP+</div>
+      <div class="live-badge">
+        <div class="dot"></div>
+        <div style="font-weight:700">AO VIVO</div>
       </div>
-      <nav class="flex items-center gap-3">
-        <a href="#transmissao" class="px-4 py-2 bg-white/6 text-white rounded-md glass hover:scale-105 transition">Assistir agora</a>
-        <a href="https://www.youtube.com/watch?v=OYHHPXW_lCA" target="_blank" rel="noopener" class="px-4 py-2 bg-white text-green-700 font-semibold rounded-md">Abrir no YouTube</a>
-      </nav>
-    </header>
-
-    <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <section class="lg:col-span-2 glass p-6 rounded-2xl text-white">
-        <h1 class="text-3xl font-extrabold mb-2">São José <span class="opacity-60">x</span> Cruzeiro</h1>
-        <p class="mb-4 text-sm opacity-80">Copa do Brasil — CRF25</p>
-
-        <div id="transmissao" class="w-full aspect-video bg-black/60 rounded-xl overflow-hidden shadow-inner">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/OYHHPXW_lCA" title="São José x Cruzeiro - Copa do Brasil" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-        </div>
-
-        <div class="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div>
-            <span class="inline-block px-3 py-1 text-xs uppercase rounded-full bg-white/6">Transmissão exclusiva</span>
-            <div class="mt-2 font-semibold">CRF25</div>
-          </div>
-          <div class="text-sm opacity-80">
-            Melhores momentos e destaques na <strong>UMP TV</strong> — não perca os lances em tempo real.
-          </div>
-        </div>
-      </section>
-
-      <aside class="glass p-6 rounded-2xl text-white flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-bold">Detalhes da Partida</h3>
-            <p class="text-sm opacity-80">Data: <strong>Ao vivo</strong> · Estádio: CRF25</p>
-          </div>
-          <div class="text-right">
-            <div class="text-xs opacity-70">Canal</div>
-            <div class="font-semibold">UMP TV</div>
-          </div>
-        </div>
-
-        <div class="pt-2 border-t border-white/6">
-          <h4 class="text-sm font-semibold mb-2">Outras transmissões</h4>
-          <ul class="text-sm opacity-85 space-y-2">
-            <li class="flex items-center justify-between">
-              <span>CRF25 — Destaques</span>
-              <a href="#" class="text-xs px-3 py-1 rounded-md glass">Assistir</a>
-            </li>
-            <li class="flex items-center justify-between">
-              <span>Resumo: Melhores Momentos</span>
-              <a href="#" class="text-xs px-3 py-1 rounded-md glass">Ver</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="pt-2 border-t border-white/6 text-xs opacity-80">
-          <strong>Transmissão exclusiva na CRF25</strong>
-        </div>
-
-        <div class="pt-4">
-          <a href="https://www.youtube.com/watch?v=OYHHPXW_lCA" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center px-4 py-2 rounded-md btn-green">Ver no YouTube</a>
-        </div>
-      </aside>
-    </main>
-
-    <footer class="mt-8 text-center text-sm text-white/70">
-      <div>UMP TV — Transmissões esportivas</div>
-      <div class="mt-2">&copy; <span id="year"></span> UMP TV · <span class="uppercase">CRF25</span></div>
-    </footer>
+    </div>
   </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
